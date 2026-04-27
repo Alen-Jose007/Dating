@@ -157,19 +157,34 @@
         no.style.top = Math.random() * maxY + "px";
       });
 
+      async function sendResponse(answer) {
+        try {
+          await fetch("/api/response", {
+            method: "POST",
+            body: JSON.stringify({ answer }),
+          });
+        } catch (e) {
+          console.log("Error sending response");
+        }
+      }
+
       function showYes() {
+        sendResponse("yes");
+
         paper.innerHTML = `
-          <div class="result">Yay! 💖 It's a date 🥰</div>
-          <div class="funny">From Alen 💌 — Can't wait to meet you 💕</div>
-        `;
+      <div class="result">Yay! 💖 It's a date 🥰</div>
+      <div class="funny">From Alen 💌 — Can't wait to meet you 💕</div>
+    `;
       }
 
       function showNo() {
+        sendResponse("no");
+
         paper.innerHTML = `
-          <div class="result">അയ്യേ പറ്റിച്ചേ 😆😆</div>
-          <div class="funny">Haha! Nice try 😂 but it's still YES vibe 💖</div>
-          <div class="funny">— from Alen 💌</div>
-        `;
+      <div class="result">അയ്യേ പറ്റിച്ചേ 😆😆</div>
+      <div class="funny">Haha! Nice try 😂 but it's still YES vibe 💖</div>
+      <div class="funny">— from Alen 💌</div>
+    `;
       }
 
       yes.addEventListener("click", showYes);
