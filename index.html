@@ -29,12 +29,12 @@
         border-radius: 8px;
         position: relative;
         transform: rotate(-4deg);
+        text-align: center;
       }
 
       h2 {
-        text-align: center;
         margin-top: 20px;
-        font-size: 24px;
+        font-size: 22px;
       }
 
       .heart {
@@ -91,10 +91,15 @@
       }
 
       .result {
-        text-align: center;
-        font-size: 24px;
-        margin-top: 130px;
+        font-size: 22px;
         color: #e91e63;
+        margin-top: 120px;
+      }
+
+      .funny {
+        font-size: 20px;
+        color: #444;
+        margin-top: 10px;
       }
     </style>
   </head>
@@ -104,7 +109,8 @@
       <div class="heart top-left">💖</div>
       <div class="heart right">💗</div>
 
-      <h2>Can we hang out soon? 💖</h2>
+      <!-- 💘 UPDATED TEXT -->
+      <h2>Can we go on a first date & meet soon? 💕</h2>
 
       <div class="options">
         <div class="option" id="yesOption">
@@ -133,29 +139,35 @@
         canMove = false;
       }, 5000);
 
-      // Move NO on hover (only while allowed)
+      // Move NO on hover
       no.addEventListener("mouseover", () => {
         if (!canMove) return;
 
         const maxX = 200;
         const maxY = 120;
 
-        const x = Math.random() * maxX;
-        const y = Math.random() * maxY;
-
-        no.style.left = x + "px";
-        no.style.top = y + "px";
+        no.style.left = Math.random() * maxX + "px";
+        no.style.top = Math.random() * maxY + "px";
       });
 
       // YES result
       function showYes() {
-        paper.innerHTML =
-          "<div class='result'>Yay! 💖 Let's hang out soon 🥰</div>";
+        paper.innerHTML = `
+          <div class="result">Yay! 💖 It's a date 🥰</div>
+          <div class="funny">Can't wait to meet you 💕</div>
+        `;
       }
 
-      // Clicks
+      // NO result (Malayalam + English fun)
+      function showNo() {
+        paper.innerHTML = `
+          <div class="result">Ayye pattiche 😆</div>
+          <div class="funny">Haha! Nice try 😂 but it's still YES vibe 💖</div>
+        `;
+      }
+
       yes.addEventListener("click", showYes);
-      no.addEventListener("click", showYes);
+      no.addEventListener("click", showNo);
     </script>
   </body>
 </html>
